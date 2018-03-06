@@ -1,0 +1,31 @@
+{
+  "name": "mws-restaurant-stage-1",
+  "version": "1.0.0",
+  "description": "Gulp workflow for web apps",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "sharp": " ^0.20.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-responsive": "^2.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonbaciulis/mws-restaurant-stage-1.git"
+  },
+  "keywords": [
+    "gulp"
+  ],
+  "author": "Jason Baciulis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonbaciulis/mws-restaurant-stage-1/issues"
+  },
+  "homepage": "https://github.com/jasonbaciulis/mws-restaurant-stage-1#readme"
+}

@@ -147,10 +147,23 @@ class DBHelper {
   }
 
   /**
+   * Restaurant page URL.
+   */
+  static idForRestaurant(restaurant) {
+    return (`${restaurant.id}`);
+  }
+
+  /**
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
     return (`/img/${restaurant.photograph}`);
+  }
+  /**
+   * Restaurant image alt attribute.
+   */
+  static imageAltForRestaurant(restaurant) {
+    return (`${restaurant.alt_tag}`);
   }
 
   /**
