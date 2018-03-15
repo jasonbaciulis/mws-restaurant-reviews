@@ -1,3 +1,10 @@
+@font-face {
+	font-family: "system-ui";
+	font-style: normal;
+	font-weight: 400;
+	src: local(".SFNSText-Regular"), local(".HelveticaNeueDeskInterface-Regular"), local(".LucidaGrandeUI"), local("Segoe UI"), local("Ubuntu"), local("Roboto-Regular"), local("DroidSans"), local("Tahoma");
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -6,7 +13,7 @@ body,
 td,
 th,
 p {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "system-ui";
 	font-size: 16px;
 	color: #333;
 	line-height: 1.5;
@@ -20,7 +27,6 @@ body {
 
 ul,
 li {
-	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	color: #333;
 }
@@ -50,7 +56,6 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: Arial, Helvetica, sans-serif;
 	margin: 0 0 20px;
 	color: #f18200;	
 }
@@ -68,6 +73,32 @@ menu,
 nav,
 section {
 	display: block;
+}
+
+.skip-link {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+	height: 1px;
+	width: 1px;
+	text-align: left;
+	overflow: hidden;
+	z-index: 9999;
+	background-color: orange;
+	font-weight: 700;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.skip-link:active, 
+.skip-link:focus, 
+.skip-link:hover {
+	left: 0; 
+	top: 0;
+	color: #fff;
+	width: auto; 
+	height: auto; 
+	overflow: visible; 
 }
 
 #main-content {
@@ -187,8 +218,8 @@ nav h1 a {
 .filter-options select {
 	background-color: white;
 	border: 1px solid #fff;
-	font-family: Arial, sans-serif;
 	font-size: 15px;
+	font-family: "system-ui";
 	height: 35px;
 	margin: 10px;
 	padding: 0 10px;
@@ -253,6 +284,12 @@ nav h1 a {
 	text-transform: uppercase;
 }
 
+#restaurants-list li a:hover 
+#restaurants-list li a:focus {
+	background-color: #3397db;
+	text-decoration: underline;
+} 
+
 @media screen and (min-width: 800px) {
 	#restaurants-list li {
 		flex-basis: calc(50% - 30px);
@@ -315,7 +352,7 @@ figure {
 }
 
 #restaurant-address {
-	margin: 10px 0px;
+	text-align: left;
 }
 
 #restaurant-cuisine {
@@ -396,6 +433,7 @@ figure {
 
 #restaurant-hours td {
 	color: #666;
+	min-width: 150px;
 }
 
 @media screen and (min-width: 830px) {
