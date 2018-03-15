@@ -1,3 +1,5 @@
+// Code source from YouTube tutorial: https://youtu.be/BfL3pprhnms
+
 var cacheName = 'mws-v4';
 var urlsToCache = [
     '/index.html',
