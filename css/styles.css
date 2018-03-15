@@ -46,10 +46,6 @@ img {
 	max-width: 100%;
 }
 
-/* a img {
-	border: none 0px #fff;
-} */
-
 h1,
 h2,
 h3,
@@ -227,6 +223,10 @@ nav h1 a {
 	flex-basis: 50%;
 }
 
+.filter-options select:focus {
+	outline: orange 2px solid;
+}
+
 /* ====================== Restaurant Listing ====================== */
 
 .restaurants-bg {
@@ -271,7 +271,7 @@ nav h1 a {
 	font-size: 11pt;
 }
 
-#restaurants-list li a {
+.btn-more {
 	background-color: orange;
 	border-bottom: 3px solid #eee;
 	color: #fff;
@@ -284,10 +284,11 @@ nav h1 a {
 	text-transform: uppercase;
 }
 
-#restaurants-list li a:hover 
-#restaurants-list li a:focus {
+.btn-more:hover, 
+.btn-more:focus {
 	background-color: #3397db;
 	text-decoration: underline;
+	color: #fff;
 } 
 
 @media screen and (min-width: 800px) {
@@ -311,33 +312,11 @@ nav h1 a {
 	z-index: 1000;
 }
 
-/* .inside #map-container {
-	background: blue none repeat scroll 0 0;
-	height: 87%;
-	position: fixed;
-	right: 0;
-	top: 80px;
-	width: 50%;
-} */
-
-/* .inside #map {
-	background-color: #ccc;
-	height: 100%;
-	width: 100%;
-} */
-
 .inside #main-content {
 	margin-top: 135px;
 }
 
-/* .inside #footer {
-	bottom: 0;
-	position: absolute;
-	width: 50%;
-} */
-
 #restaurant-name {
-	/* color: #f18200; */
 	font-size: 30px;
 	font-weight: 200;
 	text-transform: uppercase;
@@ -379,7 +358,6 @@ figure {
 }
 
 #reviews-container h2 {
-	/* color: #f58500; */
 	font-size: 30px;
 	font-weight: 300;
 }
