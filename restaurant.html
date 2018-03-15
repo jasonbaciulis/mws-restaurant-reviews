@@ -12,6 +12,7 @@
 </head>
 
 <body class="inside">
+		<a href="#skip-to" class="skip-link">Skip to content</a>
 	<!-- Beginning header -->
 	<header>
 		<!-- Beginning nav -->
@@ -35,19 +36,20 @@
 	<main id="main-content">
 		<!-- Beginning map -->
 		<section id="map-container">
-			<div id="map" role="application"></div>
+			<div id="map" role="application" tabindex="-1" aria-hidden="true"></div>
 		</section>
 		<!-- End map -->
 		<!-- Beginning restaurant -->
-		<div class="rest-reviews container">
+		<div id="skip-to" class="rest-reviews container">
 			<section id="restaurant-container">
 				<h2 id="restaurant-name"></h2>
 				<figure>
 					<img id="restaurant-img">
 					<figcaption id="restaurant-cuisine"></figcaption>
 				</figure>
-				<p id="restaurant-address"></p>
-				<table id="restaurant-hours"></table>
+				<table id="restaurant-hours">
+					<thead><tr><th id="restaurant-address" colspan="2"></th></tr></thead>
+				</table>
 			</section>
 			<!-- end restaurant -->
 			<!-- Beginning reviews -->
