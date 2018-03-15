@@ -1,4 +1,4 @@
-// py -m http.server 8000
+// Run local server: py -m http.server 8000
 
 let restaurants,
 	neighborhoods,
@@ -203,6 +203,7 @@ createRestaurantHTML = (restaurant) => {
 
 	const more = document.createElement('a');
 	more.innerHTML = 'View Details';
+	more.className = 'btn-more';
 	more.href = DBHelper.urlForRestaurant(restaurant);
 	li.append(more)
 
