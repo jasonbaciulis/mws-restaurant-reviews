@@ -1,6 +1,6 @@
 // Code source from YouTube tutorial: https://youtu.be/BfL3pprhnms
 
-var cacheName = 'mws-v4';
+var cacheName = 'mws-v7';
 var urlsToCache = [
     '/index.html',
     '/restaurant.html',
