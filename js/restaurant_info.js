@@ -45,6 +45,25 @@ fetchRestaurantFromURL = (callback) => {
 	}
 }
 
+
+/**
+ * Set srcset and sizes for different image formats
+ */
+setImgSrcset = (imageUrl, ext) => {
+	return `${imageUrl}-800px.${ext} 800w,
+	${imageUrl}-650px.${ext} 650w,
+	${imageUrl}-500px.${ext} 500w,
+	${imageUrl}-350px.${ext} 350w,
+	${imageUrl}-220px.${ext} 220w`;
+}
+
+setImgSizes = () => {
+	return `(min-width: 1320px) 590px,
+	(min-width: 830px)  calc(100vw / 2 - 30px),
+						calc(100vw - 30px)`;
+}
+
+
 /**
  * Create restaurant HTML and add it to the webpage
  */
@@ -55,10 +74,25 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 	const address = document.getElementById('restaurant-address');
 	address.innerHTML = restaurant.address;
 
-	const image = document.getElementById('restaurant-img');
-	image.className = 'restaurant-img'
-	image.src = DBHelper.imageUrlForRestaurant(restaurant);
+	const picture = document.getElementById('restaurant-img');
+	picture.className = 'restaurant-img'
+
+	const webpSource = document.createElement('source');
+	const image = document.createElement('img');
+	const imageUrl = DBHelper.imageUrlForRestaurant(restaurant);
+
+	webpSource.type = 'image/webp'
+	webpSource.srcset = setImgSrcset(imageUrl, 'webp');
+	webpSource.sizes = setImgSizes();
+
+	image.className = 'restaurant-img';
+	image.src = `${imageUrl}.jpg`;
+	image.srcset = setImgSrcset(imageUrl, 'jpg');
+	image.sizes = setImgSizes();
 	image.alt = DBHelper.imageAltForRestaurant(restaurant);
+
+	picture.append(webpSource);
+	picture.append(image);
 
 	const cuisine = document.getElementById('restaurant-cuisine');
 	cuisine.innerHTML = restaurant.cuisine_type;

@@ -79,3 +79,9 @@ gulp.task('images', function () {
 		}))
 		.pipe(gulp.dest('img'));
 });
+
+
+// minify CSS and JS
+// extract critical CSS
+// purge unused CSS
+// lazy load images

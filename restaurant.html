@@ -4,10 +4,19 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Normalize.css for better cross-browser consistency -->
-	<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-	<!-- Main CSS file -->
-	<link rel="stylesheet" href="css/styles.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+	<link rel="manifest" href="favicon/site.webmanifest">
+	<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#ffa500">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="description" content="Information of a single restaurant">
+
+	<link rel="preload" href="https://normalize-css.googlecode.com/svn/trunk/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://normalize-css.googlecode.com/svn/trunk/normalize.css"></noscript>
+	<link rel="preload" href="css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="css/styles.css"></noscript>
 	<title>Restaurant Info</title>
 </head>
 
@@ -44,7 +53,7 @@
 			<section id="restaurant-container">
 				<h2 id="restaurant-name"></h2>
 				<figure>
-					<img id="restaurant-img">
+					<picture id="restaurant-img"></picture>
 					<figcaption id="restaurant-cuisine"></figcaption>
 				</figure>
 				<table id="restaurant-hours">
@@ -71,13 +80,15 @@
 	<!-- End footer -->
 
 	<!-- Beginning scripts -->
+	<!-- End scripts -->
 	<!-- Database helpers -->
+	<script src="js/idb.js"></script>
 	<script src="js/dbhelper.js"></script>
 	<!-- Main javascript file -->
 	<script src="js/restaurant_info.js"></script>
 	<!-- Google Maps -->
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAk5v6dqlev1D_TSJCGabEs-cphxeDn7z0&libraries=places&callback=initMap"></script>
-	<!-- End scripts -->
+
 
 </body>
 

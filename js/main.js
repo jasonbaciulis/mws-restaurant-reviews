@@ -2,22 +2,24 @@
 
 let restaurants,
 	neighborhoods,
-	cuisines
-var map
-var markers = []
+	cuisines;
+var map;
+var markers = [];
 
 /**
  * Register service worker
  */
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/sw.js', {scope: '/'}).then(function(registration) {
-        console.log('ServiceWorker registration successful');
-      }, function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    });
-  }
+	window.addEventListener('load', function () {
+		navigator.serviceWorker.register('/sw.js', {
+			scope: '/'
+		}).then(function (registration) {
+			console.log('ServiceWorker registration successful');
+		}, function (err) {
+			console.log(`ServiceWorker registration failed: ${err}`);
+		});
+	});
+}
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -85,6 +87,17 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 /**
  * Initialize Google map, called from HTML.
  */
+// fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyAk5v6dqlev1D_TSJCGabEs-cphxeDn7z0&libraries=places', {
+// 	method: 'GET',
+//     mode: 'cors',
+// 	headers: new Headers({
+// 		'Access-Control-Allow-Origin': '*'
+// 	})
+// })
+// .then(function(response) {
+// 	console.log(response);
+// }).catch(error => console.log(error));
+
 window.initMap = () => {
 	let loc = {
 		lat: 40.722216,
@@ -150,15 +163,15 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 /**
  * Set srcset and sizes for different image formats
  */
-function setSrcset(imageNumber, ext) {
-	return `/img/${imageNumber}-800px.${ext} 800w,
-	/img/${imageNumber}-650px.${ext} 650w,
-	/img/${imageNumber}-500px.${ext} 500w,
-	/img/${imageNumber}-350px.${ext} 350w,
-	/img/${imageNumber}-220px.${ext} 220w`;
+setImgSrcset = (imageUrl, ext) => {
+	return `${imageUrl}-800px.${ext} 800w,
+	${imageUrl}-650px.${ext} 650w,
+	${imageUrl}-500px.${ext} 500w,
+	${imageUrl}-350px.${ext} 350w,
+	${imageUrl}-220px.${ext} 220w`;
 }
 
-function setSizes() {
+setImgSizes = () => {
 	return `(min-width: 1300px) calc(1300px / 3 - 84px),
 	(min-width: 800px)  calc(100vw / 2 - 84px),
 						calc(100vw - 84px)`;
@@ -172,17 +185,16 @@ createRestaurantHTML = (restaurant) => {
 	const picture = document.createElement('picture');
 	const webpSource = document.createElement('source');
 	const image = document.createElement('img');
-
-	imageNumber = DBHelper.idForRestaurant(restaurant);
+	const imageUrl = DBHelper.imageUrlForRestaurant(restaurant);
 
 	webpSource.type = 'image/webp'
-	webpSource.srcset = setSrcset(imageNumber, 'webp');
-	webpSource.sizes = setSizes();
+	webpSource.srcset = setImgSrcset(imageUrl, 'webp');
+	webpSource.sizes = setImgSizes();
 
 	image.className = 'restaurant-img';
-	image.src = DBHelper.imageUrlForRestaurant(restaurant);
-	image.srcset = setSrcset(imageNumber, 'jpeg');
-	image.sizes = setSizes();
+	image.src = `${imageUrl}.jpg`;
+	image.srcset = setImgSrcset(imageUrl, 'jpg');
+	image.sizes = setImgSizes();
 	image.alt = DBHelper.imageAltForRestaurant(restaurant);
 
 	picture.append(webpSource);
