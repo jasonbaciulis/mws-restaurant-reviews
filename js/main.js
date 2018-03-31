@@ -161,7 +161,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 }
 
 /**
- * Set srcset and sizes for different image formats
+ * Set srcset for different image formats
  */
 setImgSrcset = (imageUrl, ext) => {
 	return `${imageUrl}-800px.${ext} 800w,
@@ -171,35 +171,35 @@ setImgSrcset = (imageUrl, ext) => {
 	${imageUrl}-220px.${ext} 220w`;
 }
 
-setImgSizes = () => {
-	return `(min-width: 1300px) calc(1300px / 3 - 84px),
-	(min-width: 800px)  calc(100vw / 2 - 84px),
-						calc(100vw - 84px)`;
-}
-
 /**
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
 	const li = document.createElement('li');
+	const figure = document.createElement('figure');
 	const picture = document.createElement('picture');
 	const webpSource = document.createElement('source');
 	const image = document.createElement('img');
 	const imageUrl = DBHelper.imageUrlForRestaurant(restaurant);
 
 	webpSource.type = 'image/webp'
-	webpSource.srcset = setImgSrcset(imageUrl, 'webp');
-	webpSource.sizes = setImgSizes();
-
-	image.className = 'restaurant-img';
-	image.src = `${imageUrl}.jpg`;
-	image.srcset = setImgSrcset(imageUrl, 'jpg');
-	image.sizes = setImgSizes();
-	image.alt = DBHelper.imageAltForRestaurant(restaurant);
+	webpSource.setAttribute('data-srcset', setImgSrcset(imageUrl, 'webp'));
+	webpSource.setAttribute('data-sizes', 'auto');
+	
+	image.className = 'restaurant-img lazyload blur-up';
+	image.alt = `Picture of ${restaurant.name} restaurant`;
+	image.src = `data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==`;
+	image.setAttribute('data-srcset', setImgSrcset(imageUrl, 'jpg'));
+	image.setAttribute('data-sizes', 'auto');
+	image.setAttribute('data-src', `${imageUrl}.jpg`);
 
 	picture.append(webpSource);
 	picture.append(image);
-	li.append(picture);
+
+	figure.className = 'restaurant-img-cont';
+	figure.append(picture);
+
+	li.append(figure);
 
 	const name = document.createElement('h3');
 	name.innerHTML = restaurant.name;

@@ -253,12 +253,32 @@ header h1 a {
 	flex-basis: 100%;
 }
 
-.restaurant-img {
-	background-color: #ccc;
-	display: block;
+.restaurant-img-cont {
+	position: relative;
+	width: 100%;
+	height: 0;
+	padding-bottom: 75%;
 	margin: 0;
-	max-width: 100%;
-	min-height: auto;
+}
+
+.restaurant-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.blur-up {
+	-webkit-filter: blur(5px);
+	filter: blur(5px);
+	transition: filter 1000ms, -webkit-filter 1000ms;
+}
+
+.blur-up.lazyloaded {
+	-webkit-filter: blur(0);
+	filter: blur(0);
 }
 
 #restaurants-list li h3 {
@@ -327,7 +347,7 @@ header h1 a {
 }
 
 
-figure {
+.rounded-borders {
 	border-radius: 30px 0;
 	margin: 0;
 	overflow: hidden;

@@ -13,8 +13,8 @@
 	<meta name="theme-color" content="#ffffff">
 	<meta name="description" content="Information of a single restaurant">
 
-	<link rel="preload" href="https://normalize-css.googlecode.com/svn/trunk/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<noscript><link rel="stylesheet" href="https://normalize-css.googlecode.com/svn/trunk/normalize.css"></noscript>
+	<link rel="preload" href="css/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="css/normalize.css"></noscript>
 	<link rel="preload" href="css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<noscript><link rel="stylesheet" href="css/styles.css"></noscript>
 	<title>Restaurant Info</title>
@@ -52,7 +52,7 @@
 		<div id="skip-to" class="rest-reviews container">
 			<section id="restaurant-container">
 				<h2 id="restaurant-name"></h2>
-				<figure>
+				<figure class="restaurant-img-cont rounded-borders">
 					<picture id="restaurant-img"></picture>
 					<figcaption id="restaurant-cuisine"></figcaption>
 				</figure>
@@ -82,12 +82,14 @@
 	<!-- Beginning scripts -->
 	<!-- End scripts -->
 	<!-- Database helpers -->
-	<script src="js/idb.js"></script>
-	<script src="js/dbhelper.js"></script>
+	<script defer src="js/idb.js"></script>
+	<script defer src="js/dbhelper.js"></script>
 	<!-- Main javascript file -->
-	<script src="js/restaurant_info.js"></script>
+	<script defer src="js/restaurant_info.js"></script>
+	<!-- Lazy loading images -->
+	<script defer src="js/lazysizes.min.js"></script>	
 	<!-- Google Maps -->
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAk5v6dqlev1D_TSJCGabEs-cphxeDn7z0&libraries=places&callback=initMap"></script>
+	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAk5v6dqlev1D_TSJCGabEs-cphxeDn7z0&libraries=places&callback=initMap"></script>
 
 
 </body>

@@ -1,8 +1,18 @@
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+let gulp = require('gulp');
+let $ = require('gulp-load-plugins')();
+// let rename = require("gulp-rename");
+let uglify = require('gulp-uglify-es').default;
+ 
+gulp.task("prod", function () {
+    return gulp.src("js/*.js")
+        // .pipe(rename("bundle.min.js"))
+        .pipe(uglify(/* options */))
+        .pipe(gulp.dest("dest/"));
+});
+
 
 gulp.task('images', function () {
-	return gulp.src('src/*.jpg')
+	return gulp.src('src/img/*.jpg')
 		.pipe($.responsive({
 			'*.jpg': [{
 				width: 220,
@@ -69,7 +79,7 @@ gulp.task('images', function () {
 		}, {
 			// Global configuration for all images
 			// The output quality for JPEG, WebP and TIFF output formats
-			quality: 60,
+			quality: 80,
 			// Use progressive (interlace) scan for JPEG and PNG output
 			progressive: true,
 			// Strip all metadata

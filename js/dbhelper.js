@@ -16,7 +16,6 @@ class DBHelper {
 	 * Fetch all restaurants.
 	 */
 	static fetchRestaurants(callback) {
-		// let dbPromise;
 		self.dbPromise;
 		// Check if idb is open and if not then open it
 		if (self.dbPromise) {
@@ -30,24 +29,15 @@ class DBHelper {
 		self.dbPromise.then(function (db) {
 			const index = db.transaction('restaurants').objectStore('restaurants');
 			// Check if restaurants are on IndexDB, if not fetch from remote server
-			// console.log(`crated: index`);
 			index.getAll().then(function (restaurants) {
 				if (restaurants.length > 1) {
-					// debugger;
 					callback(null, restaurants);
-					// console.log(restaurants);
 				} else {
 					fetch(DBHelper.DATABASE_URL)
 						.then(response => response.json())
 						.catch(error => console.log(`Remote server fetch error: ${error}`))
 						.then(restaurants => {
-							console.log(restaurants);
 							DBHelper.insertData(restaurants);
-							// const tx = db.transaction('restaurants', 'readwrite');
-							// const store = tx.objectStore('restaurants');
-							// restaurants.forEach(function (restaurant) {
-							// 	store.put(restaurant);
-							// });
 							callback(null, restaurants);
 						})
 						.catch(error => callback(error, null));
@@ -219,12 +209,6 @@ class DBHelper {
 	static imageUrlForRestaurant(restaurant) {
 		const image = restaurant.photograph || 'restaurant-placeholder';
 		return (`/img/${image}`);
-	}
-	/**
-	 * Restaurant image alt attribute.
-	 */
-	static imageAltForRestaurant(restaurant) {
-		return (`${restaurant.alt_tag}`);
 	}
 
 	/**
