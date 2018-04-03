@@ -1,14 +1,14 @@
 let gulp = require('gulp');
 let $ = require('gulp-load-plugins')();
 // let rename = require("gulp-rename");
-let uglify = require('gulp-uglify-es').default;
+// let uglify = require('gulp-uglify-es').default;
  
-gulp.task("prod", function () {
-    return gulp.src("js/*.js")
-        // .pipe(rename("bundle.min.js"))
-        .pipe(uglify(/* options */))
-        .pipe(gulp.dest("dest/"));
-});
+// gulp.task("prod", function () {
+//     return gulp.src("js/*.js")
+//         // .pipe(rename("bundle.min.js"))
+//         .pipe(uglify(/* options */))
+//         .pipe(gulp.dest("dest/"));
+// });
 
 
 gulp.task('images', function () {

@@ -1,7 +1,7 @@
 // Code source from YouTube tutorial: https://youtu.be/BfL3pprhnms
 // And from Udacity offline-first web app course by Jake Archibald
 
-const cacheName = 'rr-static-v25';
+const cacheName = 'rr-static-v26';
 const imagesCache = 'rr-images-v2';
 
 const allCaches = [
@@ -16,6 +16,7 @@ const urlsToCache = [
 	'/css/styles.css',
 	'/js/idb.js',
 	'/js/dbhelper.js',
+	'/js/lazysizes.js',
 	'/js/main.js',
 	'/js/restaurant_info.js',
 	'/favicon/favicon-32x32.png',
