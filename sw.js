@@ -10,6 +10,7 @@ const allCaches = [
 ]
 
 const urlsToCache = [
+	'/',
 	'/index.html',
 	'/restaurant.html',
 	'/css/normalize.css',
