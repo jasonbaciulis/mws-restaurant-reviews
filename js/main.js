@@ -1,5 +1,3 @@
-// Run local server: py -m http.server 8000
-
 let restaurants,
 	neighborhoods,
 	cuisines;
@@ -171,7 +169,7 @@ createRestaurantHTML = (restaurant) => {
 	webpSource.setAttribute('data-srcset', setImgSrcset(imageUrl, 'webp'));
 	webpSource.setAttribute('data-sizes', 'auto');
 	
-	image.className = 'restaurant-img lazyload blur-up';
+	image.className = 'restaurant-img lazyload';
 	image.alt = `Picture of ${restaurant.name} restaurant`;
 	image.src = `data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==`;
 	image.setAttribute('data-srcset', setImgSrcset(imageUrl, 'jpg'));
@@ -183,26 +181,32 @@ createRestaurantHTML = (restaurant) => {
 
 	figure.className = 'restaurant-img-cont';
 	figure.append(picture);
-
+	
+	li.className = 'rounded-card';
 	li.append(figure);
 
+	const container = document.createElement('div');
+	container.className = 'restaurant-info-cont';
+	
 	const name = document.createElement('h3');
 	name.innerHTML = restaurant.name;
-	li.append(name);
-
+	container.append(name);
+	
 	const neighborhood = document.createElement('p');
 	neighborhood.innerHTML = restaurant.neighborhood;
-	li.append(neighborhood);
+	container.append(neighborhood);
 
 	const address = document.createElement('p');
 	address.innerHTML = restaurant.address;
-	li.append(address);
+	container.append(address);
 
 	const more = document.createElement('a');
 	more.innerHTML = 'View Details';
 	more.className = 'btn-more';
 	more.href = DBHelper.urlForRestaurant(restaurant);
-	li.append(more)
+	container.append(more)
+
+	li.append(container);
 
 	return li
 }
