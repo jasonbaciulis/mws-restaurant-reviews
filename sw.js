@@ -1,7 +1,7 @@
 // Code source from YouTube tutorial: https://youtu.be/BfL3pprhnms
 // And from Udacity offline-first web app course by Jake Archibald
 
-const cacheName = 'rr-static-v27';
+const cacheName = 'rr-static-v28';
 const imagesCache = 'rr-images-v2';
 
 const allCaches = [
