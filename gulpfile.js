@@ -1,15 +1,78 @@
-let gulp = require('gulp');
-let $ = require('gulp-load-plugins')();
-// let rename = require("gulp-rename");
-// let uglify = require('gulp-uglify-es').default;
- 
-// gulp.task("prod", function () {
-//     return gulp.src("js/*.js")
-//         // .pipe(rename("bundle.min.js"))
-//         .pipe(uglify(/* options */))
-//         .pipe(gulp.dest("dest/"));
-// });
+const gulp = require('gulp');
+const $ = require('gulp-load-plugins')();
+const browserSync = require('browser-sync');
+const uglify = require('gulp-uglify-es').default;
+const minifycss = require('gulp-clean-css');
+const htmlmin = require('gulp-htmlmin');
+const critical = require('critical').stream;
 
+const reload = browserSync.reload;
+
+const src = {
+  dev: {
+    html: './*.html',
+    css: './css/*.css',
+    js: './js/*.js',
+    img: './img/'
+  },
+  dist: {
+    html: './dist/',
+    css: './dist/css/',
+    js: './dist/js/',
+    img: './dist/img/'
+  }
+};
+// extract critical CSS
+// purge unused CSS
+// lazy load images
+
+
+gulp.task('watch', () => {
+  browserSync({
+    port: 8080,
+    injectChanges: true,
+    server: {
+      baseDir: './'
+    }
+  });
+
+  gulp.watch([src.dev.html, src.dev.css, src.dev.js]).on('change', reload);
+});
+
+gulp.task('watch:dist', () => {
+  browserSync({
+    port: 8080,
+    injectChanges: false,
+    server: {
+      baseDir: './dist'
+    }
+  });
+  gulp.watch([src.dist.html, src.dist.css, src.dist.js]).on('change', reload);
+});
+
+
+gulp.task('minify-js', () => {
+  gulp.src(src.dev.js)
+    .pipe(uglify())
+    .pipe(gulp.dest(src.dist.js));
+
+  gulp.src('./sw.js')
+    .pipe(uglify())
+    .pipe(gulp.dest(src.dist.html));
+});
+
+
+gulp.task('minify-css', () => {
+  gulp.src(src.dev.css)
+    .pipe(minifycss())
+    .pipe(gulp.dest(src.dist.css));
+});
+
+gulp.task('minify-html', () => {
+  gulp.src(src.dev.html)
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest(src.dist.html));
+});
 
 gulp.task('images', function () {
 	return gulp.src('src/img/*.jpg')
@@ -87,11 +150,16 @@ gulp.task('images', function () {
 			// Do not emit the error when image is enlarged.
 			errorOnEnlargement: false,
 		}))
-		.pipe(gulp.dest('img'));
+    	.pipe(gulp.dest(src.dev.img))
+    	.pipe(gulp.dest(src.dist.img));
 });
 
+// Generate & Inline Critical-path CSS
+gulp.task('critical', function () {
+    return gulp.src(src.dev.html)
+        .pipe(critical({base: 'dist/', inline: true, css: ['css/normalize.css','css/styles.css']}))
+        .on('error', function(err) { log.error(err.message); })
+        .pipe(gulp.dest(src.dist.html));
+});
 
-// minify CSS and JS
-// extract critical CSS
-// purge unused CSS
-// lazy load images
+gulp.task('prod', ['minify-js', 'minify-css', 'critical', 'minify-html']);

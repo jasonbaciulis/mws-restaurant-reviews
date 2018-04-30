@@ -1,14 +1,18 @@
 {
-  "name": "mws-restaurant-stage-1",
+  "name": "mws-restaurant-reviews",
   "version": "1.0.0",
   "description": "Gulp workflow for web apps",
   "main": "gulpfile.js",
   "dependencies": {
+    "critical": "^1.2.2",
     "gulp": "^3.9.1",
     "sharp": " ^0.20.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.24.1",
     "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-htmlmin": "^4.0.0",
     "gulp-load-plugins": "^1.5.0",
     "gulp-responsive": "^2.9.0",
     "gulp-uglify-es": "^1.0.1"
@@ -18,15 +22,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jasonbaciulis/mws-restaurant-stage-1.git"
+    "url": "git+https://github.com/jasonbaciulis/mws-restaurant-reviews.git"
   },
   "keywords": [
-    "gulp"
+    "gulp",
+    "progressive-web-app",
+    "offline-first",
+    "udacity",
+    "google",
+    "nanodegree"
   ],
   "author": "Jason Baciulis",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jasonbaciulis/mws-restaurant-stage-1/issues"
+    "url": "https://github.com/jasonbaciulis/mws-restaurant-reviews/issues"
   },
-  "homepage": "https://github.com/jasonbaciulis/mws-restaurant-stage-1#readme"
+  "homepage": "https://github.com/jasonbaciulis/mws-restaurant-reviews#readme"
 }
