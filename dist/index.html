@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#ffa500">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="description" content="Restaurant Reviews progressive web app project for Udacity Mobile Web Specialist Nanodegree">
+
+	<style>
+		html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}a{background-color:transparent}strong{font-weight:bolder}select{font-family:inherit;font-size:100%;line-height:1.15;margin:0}select{text-transform:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}@font-face{font-family:system-ui;font-style:normal;font-weight:400;src:local(".SFNSText-Regular"),local(".HelveticaNeueDeskInterface-Regular"),local(".LucidaGrandeUI"),local("Segoe UI"),local("Ubuntu"),local("Roboto-Regular"),local("DroidSans"),local("Tahoma")}*{box-sizing:border-box}body{font-family:system-ui;font-size:16px;color:#333;line-height:1.5}body{background-color:#fdfdfd;margin:0;position:relative}ul{font-size:16px;color:#333}a{color:orange;text-decoration:none}h1,h2{margin:0 0 20px;color:#f18200}footer,header,nav,section{display:block}.skip-link{position:absolute;top:-9999px;left:-9999px;height:1px;width:1px;text-align:left;overflow:hidden;z-index:9999;background-color:orange;font-weight:700;border-radius:4px;padding:10px}#main-content{background-color:#f3f3f3;min-height:100%}#footer{background-color:#444;color:#aaa;font-size:12px;letter-spacing:1px;padding:25px;text-align:center;text-transform:uppercase}header{background-color:#252831;width:100%;display:flex;flex-direction:column}header h1{margin:auto;height:80px;display:flex;align-items:center;justify-content:center}header h1 a{color:#fff;font-size:16px;font-weight:200;letter-spacing:10px;text-transform:uppercase}#map{height:400px;width:100%;background-color:#ccc}.container{max-width:1300px;margin:auto}.filter-bg{background-color:#3397db}.filter-options{align-items:center;display:flex;flex-direction:column;padding:10px 15px}@media screen and (min-width:550px){.filter-options{flex-direction:row}}.filter-options h2{color:#fff;font-size:1rem;font-weight:400;line-height:1;margin:5px 20px;flex-shrink:0}.filter-options select{flex-basis:50%;width:100%;height:35px;margin:10px;padding:0 10px;border:1px solid #fff;border-radius:5px;background-color:#fff;font-size:15px;font-family:system-ui}.restaurants-bg{background-color:#ddd}#restaurants-list{list-style:none;padding:30px 0;display:flex;flex-wrap:wrap}
+	</style>
+	<link rel="preload" href="css/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="css/normalize.css"></noscript>
+	<link rel="preload" href="css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="css/styles.css"></noscript>
+
+	
+	<title>Restaurant Reviews</title>
+</head>
+
+<body>
+	<a href="#skip-to" class="skip-link">Skip to content</a>
+	<header>
+		<nav>
+			<h1>
+				<a href="/">Restaurant Reviews</a>
+			</h1>
+		</nav>
+	</header>
+	
+	<main id="main-content">
+		<section id="map-container">
+			<div id="map" role="application" tabindex="-1" aria-hidden="true"></div>
+		</section>
+		<section id="skip-to">
+			<div class="filter-bg">
+				<div class="filter-options container">
+					<h2>Filter Results</h2>
+					<select id="neighborhoods-select" name="neighborhoods" aria-label="Select neighborhoods" onchange="updateRestaurants()">
+						<option value="all">All Neighborhoods</option>
+					</select>
+					<select id="cuisines-select" name="cuisines" aria-label="Select cuisines" onchange="updateRestaurants()">
+						<option value="all">All Cuisines</option>
+					</select>
+				</div>
+			</div>
+			<div class="restaurants-bg">
+				<ul id="restaurants-list" class="container"></ul>
+			</div>
+		</section>
+	</main>
+	
+	<script defer src="js/idb.js"></script>
+	<script defer src="js/dbhelper.js"></script>
+	<script defer src="js/main.js"></script>
+	<script defer src="js/lazysizes.min.js"></script>
+	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAk5v6dqlev1D_TSJCGabEs-cphxeDn7z0&libraries=places&callback=initMap"></script>
+	
+	
+	<footer id="footer">
+		Copyright (c) 2017
+		<a href="/">
+			<strong>Restaurant Reviews</strong>
+		</a> All Rights Reserved.
+	</footer>
+	
+</body>
+
+</html>
