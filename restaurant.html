@@ -51,19 +51,57 @@
 		<!-- Beginning restaurant -->
 		<div id="skip-to" class="rest-reviews container">
 			<section id="restaurant-container">
-				<h2 id="restaurant-name"></h2>
-				<figure class="restaurant-img-cont rounded-card">
+
+				<h2 id="restaurant-name" tabfocus="0"></h2>
+
+				<figure class="restaurant-img-cont  rounded-card">
 					<picture id="restaurant-img"></picture>
 					<figcaption id="restaurant-cuisine"></figcaption>
 				</figure>
+
+				<div id="restaurant-favorite">
+					<label for="favorite-check">Add to Favorites</label>
+					<input type="checkbox" id="favorite-check">
+				</div>
+
 				<table id="restaurant-hours">
 					<thead><tr><th id="restaurant-address" colspan="2"></th></tr></thead>
 				</table>
+
 			</section>
 			<!-- end restaurant -->
 			<!-- Beginning reviews -->
 			<section id="reviews-container">
 				<ul id="reviews-list"></ul>
+
+				<h3>Leave Your Review</h3>
+				<form id="review-form" class="rounded-card">
+				
+					<div class="form-header">
+						<label class="form-label" for="name">Name:</label>
+						<input type="text" id="name" name="name" placeholder="Your Name" required/>
+					</div>
+				
+					<div class="review-body">
+						<div class="review-rating">
+							<label for="rating">Rating:</label>
+							<select id="rating" name="rating">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3" selected>3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+					
+						<div>
+							<label class="review-text-label" for="review-text">Text:</label>
+							<textarea class="review-text" id="review-text" rows="4" name="comments" placeholder="Please tell us your opinion" required></textarea>
+							<input class="btn-submit" type="submit" value="Submit Review">
+						</div>
+					</div>
+				
+				</form>
 			</section>
 		</div>
 		<!-- End reviews -->
