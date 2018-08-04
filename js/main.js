@@ -159,6 +159,7 @@ setImgSrcset = (imageUrl, ext) => {
  */
 createRestaurantHTML = (restaurant) => {
 	const li = document.createElement('li');
+	const link = document.createElement('a');
 	const figure = document.createElement('figure');
 	const picture = document.createElement('picture');
 	const webpSource = document.createElement('source');
@@ -182,9 +183,11 @@ createRestaurantHTML = (restaurant) => {
 	figure.className = 'restaurant-img-cont';
 	figure.append(picture);
 	
-	li.className = 'rounded-card';
-	li.append(figure);
-
+	
+	link.className = 'card-link';
+	link.href = DBHelper.urlForRestaurant(restaurant);
+	link.append(figure);
+	
 	const container = document.createElement('div');
 	container.className = 'restaurant-info-cont';
 	
@@ -195,18 +198,20 @@ createRestaurantHTML = (restaurant) => {
 	const neighborhood = document.createElement('p');
 	neighborhood.innerHTML = restaurant.neighborhood;
 	container.append(neighborhood);
-
+	
 	const address = document.createElement('p');
 	address.innerHTML = restaurant.address;
 	container.append(address);
-
-	const more = document.createElement('a');
+	
+	const more = document.createElement('button');
 	more.innerHTML = 'View Details';
 	more.className = 'btn-more';
-	more.href = DBHelper.urlForRestaurant(restaurant);
 	container.append(more)
+	
+	link.append(container);
 
-	li.append(container);
+	li.className = 'rounded-card';
+	li.append(link);
 
 	return li
 }

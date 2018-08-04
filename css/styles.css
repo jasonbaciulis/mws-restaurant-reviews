@@ -303,7 +303,7 @@ header h1 a {
 	display: inline-block;
 	padding: 8px 30px 10px;
 	margin: 15px 0 0;
-	/* border: none; */
+	border: none;
 	border-radius: 0 10px;
 	background-color: orange;
 	color: #fff;
@@ -311,6 +311,7 @@ header h1 a {
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
+	cursor: pointer;
 }
 
 .btn-more:hover, 
@@ -368,6 +369,12 @@ header h1 a {
 
 .rounded-card:hover {
 	box-shadow: 2px 4px 8px 0 rgba(46,61,73,0.2);
+}
+
+.card-link {
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 
 #restaurant-address {
