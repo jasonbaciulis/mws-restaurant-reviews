@@ -14,7 +14,7 @@
 	<meta name="description" content="Information of a single restaurant">
 
 	<style>
-		html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}a{background-color:transparent}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}@font-face{font-family:system-ui;font-style:normal;font-weight:400;src:local(".SFNSText-Regular"),local(".HelveticaNeueDeskInterface-Regular"),local(".LucidaGrandeUI"),local("Segoe UI"),local("Ubuntu"),local("Roboto-Regular"),local("DroidSans"),local("Tahoma")}*{box-sizing:border-box}body{font-family:system-ui;font-size:16px;color:#333;line-height:1.5}body{background-color:#fdfdfd;margin:0;position:relative}li,ul{font-size:16px;color:#333}a{color:orange;text-decoration:none}h1,h2{margin:0 0 20px;color:#f18200}figcaption,figure,header,nav,section{display:block}.skip-link{position:absolute;top:-9999px;left:-9999px;height:1px;width:1px;text-align:left;overflow:hidden;z-index:9999;background-color:orange;font-weight:700;border-radius:4px;padding:10px}#main-content{background-color:#f3f3f3;min-height:100%}header{background-color:#252831;width:100%;display:flex;flex-direction:column}header h1{margin:auto;height:80px;display:flex;align-items:center;justify-content:center}header h1 a{color:#fff;font-size:16px;font-weight:200;letter-spacing:10px;text-transform:uppercase}#breadcrumb{padding:15px 40px;list-style:none;background-color:#eee;font-size:17px;margin:0}#breadcrumb li{display:inline}#breadcrumb li a{color:#0275d8;text-decoration:none}#map{height:400px;width:100%;background-color:#ccc}.container{max-width:1300px;margin:auto}.restaurant-img-cont{position:relative;width:100%;height:0;padding-bottom:75%;margin:0;background-color:#e7e5ed}.inside header{position:fixed;top:0;width:100%;z-index:1000}.inside #main-content{margin-top:135px}#restaurant-name{font-size:30px;font-weight:200;text-transform:uppercase}.rounded-borders{border-radius:30px 0;margin:0;overflow:hidden;margin-bottom:30px}#restaurant-cuisine{background-color:#333;color:#ddd;font-size:16px;font-weight:300;letter-spacing:10px;padding:10px 0;text-align:center;text-transform:uppercase}.rest-reviews{display:flex;flex-wrap:wrap}#restaurant-container,#reviews-container{border-bottom:1px solid #d9d9d9;border-top:1px solid #fff;padding:30px 15px;flex-basis:100%}#reviews-list{padding:0;margin:0}@media screen and (min-width:830px){#restaurant-container,#reviews-container{flex-basis:50%;padding:30px}}
+		html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}a{background-color:transparent}input,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}input{overflow:visible}select{text-transform:none}[type=submit]{-webkit-appearance:button}[type=submit]::-moz-focus-inner{border-style:none;padding:0}[type=submit]:-moz-focusring{outline:1px dotted ButtonText}textarea{overflow:auto}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}@font-face{font-family:system-ui;font-style:normal;font-weight:400;src:local(".SFNSText-Regular"),local(".HelveticaNeueDeskInterface-Regular"),local(".LucidaGrandeUI"),local("Segoe UI"),local("Ubuntu"),local("Roboto-Regular"),local("DroidSans"),local("Tahoma")}*{box-sizing:border-box}body{font-family:system-ui;font-size:16px;color:#333;line-height:1.5}body{background-color:#f3f3f3;margin:0;position:relative}li,ul{font-size:16px;color:#333}a{color:orange;text-decoration:none}h1,h2{margin:0 0 20px;color:#f18200}figcaption,figure,header,nav,section{display:block}.skip-link{position:absolute;top:-9999px;left:-9999px;height:1px;width:1px;text-align:left;overflow:hidden;z-index:9999;background-color:orange;font-weight:700;border-radius:4px;padding:10px}#main-content{background-color:#f3f3f3;min-height:100%}header{background-color:#252831;width:100%;display:flex;flex-direction:column}header h1{margin:auto;height:80px;display:flex;align-items:center;justify-content:center}header h1 a{color:#fff;font-size:16px;font-weight:200;letter-spacing:10px;text-transform:uppercase}#breadcrumb{padding:15px 40px;list-style:none;background-color:#eee;font-size:17px;margin:0}#breadcrumb li{display:inline}#breadcrumb li a{color:#0275d8;text-decoration:none}#map{height:400px;width:100%;background-color:#ccc}.container{max-width:1300px;margin:auto}.restaurant-img-cont{position:relative;width:100%;height:0;margin:0;padding-bottom:75%;background-color:#e7e5ed}.inside header{position:fixed;top:0;width:100%;z-index:1000}.inside #main-content{margin-top:135px}#restaurant-name{font-size:30px;font-weight:200;text-transform:uppercase}.rounded-card{border-radius:30px 0;overflow:hidden;box-shadow:5px 5px 25px 0 rgba(46,61,73,.2)}#restaurant-cuisine{background-color:#333;color:#ddd;font-size:16px;font-weight:300;letter-spacing:10px;padding:10px 0;text-align:center;text-transform:uppercase}.rest-reviews{display:flex;flex-wrap:wrap}#restaurant-container,#reviews-container{border-bottom:1px solid #d9d9d9;border-top:1px solid #fff;padding:30px 15px;flex-basis:100%}#reviews-list{padding:0;margin:0}@media screen and (min-width:830px){#restaurant-container,#reviews-container{flex-basis:50%;padding:30px}}
 	</style>
 	<link rel="preload" href="css/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<noscript><link rel="stylesheet" href="css/normalize.css"></noscript>
@@ -54,8 +54,9 @@
 		<!-- Beginning restaurant -->
 		<div id="skip-to" class="rest-reviews container">
 			<section id="restaurant-container">
-				<h2 id="restaurant-name"></h2>
-				<figure class="restaurant-img-cont rounded-borders">
+				<h2 id="restaurant-name" tabfocus="0"></h2>
+				<div id="restaurant-favorite"></div>
+				<figure class="restaurant-img-cont  rounded-card">
 					<picture id="restaurant-img"></picture>
 					<figcaption id="restaurant-cuisine"></figcaption>
 				</figure>
@@ -67,6 +68,25 @@
 			<!-- Beginning reviews -->
 			<section id="reviews-container">
 				<ul id="reviews-list"></ul>
+				<form id="review-form">
+				
+					<label for="name">Name:</label>
+					<input type="text" id="name" name="name" placeholder="Your Name" required>
+				
+					<label for="rating">Rating</label>
+					<select name="rating">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3" selected>3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				
+					<label for="review-text">Review text:</label>
+					<textarea id="review-text" rows="4" name="comments" placeholder="Please leave your review here" required></textarea>
+					<input type="submit" value="Submit Review">
+				
+				</form>
 			</section>
 		</div>
 		<!-- End reviews -->
