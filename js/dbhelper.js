@@ -1,19 +1,4 @@
 /**
- * Register service worker
- */
-if ('serviceWorker' in navigator) {
-	window.addEventListener('load', function () {
-		navigator.serviceWorker.register('/sw.js', {
-			scope: '/'
-		}).then(function (registration) {
-			console.log('ServiceWorker registration successful');
-		}, function (err) {
-			console.log(`ServiceWorker registration failed: ${err}`);
-		});
-	});
-}
-
-/**
  * Common database helper functions.
  */
 class DBHelper {
@@ -48,20 +33,20 @@ class DBHelper {
 	static fetchRestaurants(callback) {
 		DBHelper.dbPromise.then(db => {
 			if (!db) return;
-			// 1. Look for restaurants in IDB
+
 			const tx = db.transaction('all-restaurants');
 			const store = tx.objectStore('all-restaurants');
+
 			store.getAll().then(results => {
 				if (results.length === 0) {
-					// No restaurants in IDB found
-					// 2. Fetch restaurants from network
+
 					fetch(`${DBHelper.DATABASE_URL}/restaurants`)
 					.then(response => {
 						return response.json();
 					})
 					.then(restaurants => {
-						// Restaurants fetched from network
-						// 3. Put fetched restaurants into IDB
+
+
 						const tx = db.transaction('all-restaurants', 'readwrite');
 						const store = tx.objectStore('all-restaurants');
 						restaurants.forEach(restaurant => {
@@ -70,15 +55,13 @@ class DBHelper {
 						callback(null, restaurants);
 					})
 					.catch(error => {
-						// Unable to fetch from network
 						callback(error, null);
 					});
 				} else {
-					// Restaurants found in IDB
 					callback(null, results);
 				}
 			})
-			
+
 		});
 	}
 
@@ -86,7 +69,6 @@ class DBHelper {
 	 * Fetch a restaurant by its ID.
 	 */
 	static fetchRestaurantById(id, callback) {
-		//TODO: Refactor, only get a single restaurant by ID from network
 		// fetch all restaurants with proper error handling.
 		DBHelper.fetchRestaurants((error, restaurants) => {
 			if (error) {
@@ -197,15 +179,14 @@ class DBHelper {
 	static fetchRestaurantReviews(restaurant, callback) {
 		DBHelper.dbPromise.then(db => {
 			if (!db) return;
-			// 1. Check if there are reviews in the IDB
+
 			const tx = db.transaction('all-reviews');
 			const store = tx.objectStore('all-reviews');
 			store.getAll().then(results => {
+
 				if (results && results.length > 0) {
-					// Continue with reviews from IDB
 					callback(null, results);
 				} else {
-					// 2. If there are no reviews in the IDB, fetch reviews from the network
 					fetch(`${DBHelper.DATABASE_URL}/reviews/?restaurant_id=${restaurant.id}`)
 					.then(response => {
 						return response.json();
@@ -213,18 +194,16 @@ class DBHelper {
 					.then(reviews => {
 						this.dbPromise.then(db => {
 							if (!db) return;
-							// 3. Put fetched reviews into IDB
 							const tx = db.transaction('all-reviews', 'readwrite');
 							const store = tx.objectStore('all-reviews');
+
 							reviews.forEach(review => {
 								store.put(review);
 							})
 						});
-						// Continue with reviews from network
 						callback(null, reviews);
 					})
 					.catch(error => {
-						// Unable to fetch reviews from network
 						callback(error, null);
 					})
 				}
@@ -236,7 +215,6 @@ class DBHelper {
 	 * Restaurant page URL.
 	 */
 	static urlForRestaurant(restaurant) {
-
 		return (`./restaurant.html?id=${restaurant.id}`);
 	}
 
@@ -244,11 +222,8 @@ class DBHelper {
 	 * Restaurant image URL.
 	 */
 	static imageUrlForRestaurant(restaurant) {
-		if (restaurant.photograph) {
-			return (`/img/${restaurant.photograph}.webp`);
-		} else {
-			return (`/img/default.webp`);
-		}
+		const image = restaurant.photograph || 'restaurant-placeholder';
+		return (`/img/${image}`);
 	}
 
 	/**
@@ -266,27 +241,29 @@ class DBHelper {
 		return marker;
 	}
 
+	/**
+	 * Submit Review
+	 */
 	static submitReview(data) {
 		console.log(data);
-		
+
 		return fetch(`${DBHelper.DATABASE_URL}/reviews`, {
-			body: JSON.stringify(data), 
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, same-origin, *omit
+			body: JSON.stringify(data),
+			cache: 'no-cache',
+			credentials: 'same-origin',
 			headers: {
 				'content-type': 'application/json'
 			},
 			method: 'POST',
-			mode: 'cors', // no-cors, cors, *same-origin
-			redirect: 'follow', // *manual, follow, error
-			referrer: 'no-referrer', // *client, no-referrer
+			mode: 'cors',
+			redirect: 'follow',
+			referrer: 'no-referrer',
 		})
 		.then(response => {
 			response.json()
 				.then(data => {
 					this.dbPromise.then(db => {
 						if (!db) return;
-						// Put fetched reviews into IDB
 						const tx = db.transaction('all-reviews', 'readwrite');
 						const store = tx.objectStore('all-reviews');
 						store.put(data);
@@ -295,17 +272,11 @@ class DBHelper {
 				})
 		})
 		.catch(error => {
-			/**
-			 * Network offline.
-			 * Add a unique updatedAt property to the review
-			 * and store it in the IDB.
-			 */
 			data['updatedAt'] = new Date().getTime();
 			console.log(data);
-			
+
 			this.dbPromise.then(db => {
 				if (!db) return;
-				// Put fetched reviews into IDB
 				const tx = db.transaction('offline-reviews', 'readwrite');
 				const store = tx.objectStore('offline-reviews');
 				store.put(data);
